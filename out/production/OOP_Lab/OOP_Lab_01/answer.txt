@@ -1,0 +1,12 @@
+If user choose “Cancel” , the dialog will output : You’re chosen : NO
+Since the return for option when pressing “Cancel” is 2 , and the JOptionPane.YES_OPTION return Yes if it is 1 , otherwise it returns 0 and print NO
+You can change as the code below 
+int option = JOptionPane.showOptionDialog(null,
+                "Do you want to change to the first class ticket?",
+                "Custom Confirmation",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]);
+Using JOptionPane.showOptionDialog to change the option.
