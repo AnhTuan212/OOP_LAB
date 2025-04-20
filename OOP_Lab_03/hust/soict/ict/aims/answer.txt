@@ -1,0 +1,50 @@
+Question: Write a toString() method for the DigitalVideoDisc class. What should be the return type of this method?
+Answer: it should be a string type
+
+Question: Which classes are aggregates of other classes?
+Answer: Aggregates classes: Compact Disc (Track collection), Cart (Media collection), Store (Media collection)
+
+Question: What Happens If the Passed Object Is Not an Instance of Media?
+Answer: When overriding equals(Object o), the method must handle cases where the passed object o is not an instance of Media.
+In the implementation above:
+The instanceof check if (!(o instanceof Media)) return false; ensures that if o is not a Media object (e.g., it’s a String, Integer, or another unrelated class), the method returns false.
+
+Question: Iterate through the list and print out the information of the media by using toString() method.Observe what happens and explain in detail.
+Answer: Create a List Media , each object of Media could be Compact Disc or DigitalVideoDisc or Book , add all and print toString method , there is 1 toString method but many output is printed out . toString() method is depend on each object 
+
+Question: Reading Assignment: Please answer three questions below:
+- What are the advantages of Polymorphism?
+- How is Inheritance useful to achieve Polymorphism in Java?
+- What are the differences between Polymorphism and Inheritance in Java?
+Answer: Advantages of Polymorphism: Code reusability, flexibility, simplified code, and maintainability.
+	Inheritance’s Role in Polymorphism: Provides the "is-a" relationship, enables subtype polymorphism, and allows method overriding with dynamic dispatch.
+	Differences: Inheritance is about structure and reuse, while polymorphism is about behavior and flexibility; inheritance sets up the hierarchy, and polymorphism leverages it at runtime  
+
+Question: Alternatively, to compare items in the cart, instead of using the Comparator class I have
+mentioned, you can use the Comparable interface1 and override the compareTo()method. You can
+refer to the Java docs to see the information of this interface.
+Suppose we are taking this Comparable interface approach.
+- What class should implement the Comparable interface?
+- In those classes, how should you implement the compareTo()method to reflect the ordering that
+we want?
+- Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this
+Comparable interface approach?
+- Suppose the DVDs have a different ordering rule from the other media types, that is by title, then
+decreasing length, then cost. How would you modify your code to allow this?
+Answer: 
++ the Media class should implement the Comparable interface
++ The compareTo method in the Media class determines the natural ordering of Media objects. The ordering you want to reflect (as previously implemented by the Comparator classes) is either:
+By title, then cost (e.g., COMPARE_BY_TITLE_COST).
+By cost, then title (e.g., COMPARE_BY_COST_TITLE).
+Since the Comparable interface defines a single natural ordering, you need to choose one of these as the default ordering for Media objects. Let’s assume we choose "by title, then cost" as the natural ordering (you can choose the other if preferred).The demo of code is in COMPARE_BY_TITLE_COST and COMPARE_BY_COST_TITLE
++ No, you cannot have two ordering rules using only the Comparable interface approach. Here’s why:
+	The Comparable interface defines a single natural ordering for a class via the compareTo method. This means you can only implement one ordering rule (e.g., by title then cost) in the compareTo method.
+	If you want a second ordering rule (e.g., by cost then title), you would need to use a Comparator to define an alternative ordering, as you did originally with COMPARE_BY_COST_TITLE
++ To handle a different ordering rule for DVDs (e.g., DigitalVideoDisc objects) compared to other media types, you need to account for the following:
+DVDs should be sorted by:
+	Title (ascending).
+	Length (decreasing).
+	Cost (ascending).
+Other media types (Book, Disc) should follow the default ordering of the Media class (e.g., by title, then cost).
+The length property is specific to DigitalVideoDisc (and possibly Disc), so you’ll need to ensure that only relevant classes have access to this property
+
